@@ -16,11 +16,9 @@ async function connectDB() {
       bufferCommands: false,
     };
 
-    cached.promise = mongoose
-      .connect(`${process.env.MONGODB_URI}/tahaecommerce`, opts)
-      .then((mongoose) => {
-        return mongoose;
-      });
+    const uri = `${process.env.MONGODB_URI}/tahaecommerce`;
+
+    cached.promise = mongoose.connect(uri, opts).then((mongoose) => mongoose);
   }
 
   cached.conn = await cached.promise;
